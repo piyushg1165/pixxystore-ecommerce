@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import myContext from '../../context/data/myContext';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, fireDB } from '../../fireabase/FirebaseConfig';
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
 import Loader from '../../components/loader/Loader';
+import { auth, fireDB } from '../../firebase/FirebaseConfig';
 
 function Signup() {
     const [name, setName] = useState("");
@@ -80,6 +80,7 @@ function Signup() {
                         className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                         placeholder='Password'
                     />
+                    <p className='text-white'>Password should contain at least 6 characters</p>
                 </div>
                 <div className=' flex justify-center mb-3'>
                     <button
