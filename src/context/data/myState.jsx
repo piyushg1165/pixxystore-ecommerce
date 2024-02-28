@@ -4,6 +4,7 @@ import MyContext from './myContext';
 function MyState(props) {
 
     const [mode, setMode] = useState('light');
+    const [loading, setLoading] = useState(false)
 
     const toggleMode = () => {
         if (mode === 'light') {
@@ -18,7 +19,7 @@ function MyState(props) {
     }
    
   return (
-    <MyContext.Provider value={{mode , toggleMode}}>
+    <MyContext.Provider value={{mode , toggleMode, loading, setLoading}}>
 { /*      eslint-disable-next-line react/prop-types*/}   
     {props.children}
     </MyContext.Provider>
