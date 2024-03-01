@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MyContext from './myContext';
+// import { fireDB } from '../../firebase/firebaseConfig';
+import { Timestamp, addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-import { Timestamp, addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { fireDB } from '../../firebase/FirebaseConfig';
 
 
 function MyState(props) {
-  const [mode, setMode] = useState('light');  
-  const [loading, setLoading] = useState(false); 
+  const [mode, setMode] = useState('light');
+  const [loading, setLoading] = useState(false);
 
   const toggleMode = () => {
     if (mode === 'light') {
@@ -48,10 +49,8 @@ function MyState(props) {
     try {
       await addDoc(productRef, products)
       toast.success("Product Add successfully")
-      setTimeout(() => {
-        window.location.href = '/dashboard'
-      }, 800);
       getProductData()
+      closeModal()
       setLoading(false)
     } catch (error) {
       console.log(error)
@@ -86,9 +85,6 @@ function MyState(props) {
     }
   }
 
-  useEffect(() => {
-    getProductData();
-  }, []);
 
   const edithandle = (item) => {
     setProducts(item)
@@ -123,11 +119,41 @@ function MyState(props) {
     }
   }
 
+
+  const [order, setOrder] = useState([]);
+
+  const getOrderData = async () => {
+    setLoading(true)
+    try {
+      const result = await getDocs(collection(fireDB, "orders"))
+      const ordersArray = [];
+      result.forEach((doc) => {
+        ordersArray.push(doc.data());
+        setLoading(false)
+      });
+      setOrder(ordersArray);
+      console.log(ordersArray)
+      setLoading(false);
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }
+
+
+  useEffect(() => {
+    getProductData();
+    getOrderData()
+
+  }, []);
+
+
   return (
-    <MyContext.Provider value={{ 
+    <MyContext.Provider value={{
       mode, toggleMode, loading, setLoading,
-            products, setProducts, addProduct, product,
-            edithandle, updateProduct, deleteProduct,}}>
+      products, setProducts, addProduct, product,
+      updateProduct,edithandle,deleteProduct,order
+    }}>
       {props.children}
     </MyContext.Provider>
   )

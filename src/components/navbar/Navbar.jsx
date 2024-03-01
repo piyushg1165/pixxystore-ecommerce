@@ -8,12 +8,17 @@ import { RxCross2 } from 'react-icons/rx'
 import { useSelector } from 'react-redux'
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  const context = useContext(myContext)
-  const { toggleMode, mode } = context
+  const context = useContext(myContext);
+  const { toggleMode, mode } = context;
 
-  const cartItems = useSelector((state) => state.cart)
+  const cartItems = useSelector((state) => state.cart);
+
+  const logout = () => {
+    localStorage.clear('user');
+    window.location.href = '/login'
+  }
 
   return (
     <div className="bg-white sticky top-0 z-50  "  >
@@ -71,7 +76,7 @@ export default function Navbar() {
                   </div>
 
                   <div className="flow-root">
-                    <a className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
+                    <a onClick={logout} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
                       Logout
                     </a>
                   </div>
