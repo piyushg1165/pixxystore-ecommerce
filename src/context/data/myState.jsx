@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react'
 import MyContext from './myContext';
-// import { fireDB } from '../../firebase/firebaseConfig';
+// import { fireDb } from '../../firebase/firebaseConfig';
 import { Timestamp, addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { fireDB } from '../../firebase/FirebaseConfig';
@@ -93,7 +94,7 @@ function MyState(props) {
   const updateProduct = async (item) => {
     setLoading(true)
     try {
-      await setDoc(doc(fireDB, "products", products.id), products);
+      await setDoc(doc(fireDB, "products", item.id), products);
       toast.success("Product Updated successfully")
       getProductData();
       setLoading(false)
@@ -132,7 +133,7 @@ function MyState(props) {
         setLoading(false)
       });
       setOrder(ordersArray);
-      console.log(ordersArray)
+      // console.log(ordersArray)
       setLoading(false);
     } catch (error) {
       console.log(error)
@@ -141,10 +142,33 @@ function MyState(props) {
   }
 
 
+  const [user, setUser] = useState([]);
+
+  const getUserData = async () => {
+    setLoading(true)
+    try {
+      const result = await getDocs(collection(fireDB, "users"))
+      const usersArray = [];
+      result.forEach((doc) => {
+        usersArray.push(doc.data());
+        setLoading(false)
+      });
+      setUser(usersArray);
+      console.log(usersArray)
+      setLoading(false);
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }
+
+
+
+
   useEffect(() => {
     getProductData();
-    getOrderData()
-
+    getOrderData();
+    getUserData();
   }, []);
 
 
@@ -152,11 +176,11 @@ function MyState(props) {
     <MyContext.Provider value={{
       mode, toggleMode, loading, setLoading,
       products, setProducts, addProduct, product,
-      updateProduct,edithandle,deleteProduct,order
+      updateProduct,edithandle,deleteProduct,order,user
     }}>
       {props.children}
     </MyContext.Provider>
   )
 }
 
-export default MyState
+export default MyState;
