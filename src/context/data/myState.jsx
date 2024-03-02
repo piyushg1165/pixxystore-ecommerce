@@ -50,8 +50,8 @@ function MyState(props) {
     try {
       await addDoc(productRef, products)
       toast.success("Product Add successfully")
+      window.location.href = '/dashboard'
       getProductData()
-      closeModal()
       setLoading(false)
     } catch (error) {
       console.log(error)
@@ -171,12 +171,17 @@ function MyState(props) {
     getUserData();
   }, []);
 
+  const [searchkey, setSearchkey] = useState('')
+  const [filterType, setFilterType] = useState('')
+  const [filterPrice, setFilterPrice] = useState('')
 
   return (
     <MyContext.Provider value={{
       mode, toggleMode, loading, setLoading,
       products, setProducts, addProduct, product,
-      updateProduct,edithandle,deleteProduct,order,user
+      updateProduct,edithandle,deleteProduct,order,user,
+      searchkey, setSearchkey,filterType, setFilterType,
+      filterPrice, setFilterPrice
     }}>
       {props.children}
     </MyContext.Provider>
