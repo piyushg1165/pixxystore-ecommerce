@@ -128,7 +128,7 @@ function Cart() {
   return (
     <Layout>
       <div
-        className="h-screen bg-gray-100 pt-5 "
+        className="h-full bg-gray-100 pt-5 "
         style={{
           backgroundColor: mode === "dark" ? "#282c34" : "",
           color: mode === "dark" ? "white" : "",
@@ -149,7 +149,7 @@ function Cart() {
                   <img
                     src={item.imageUrl}
                     alt="product-image"
-                    className="w-full rounded-lg sm:w-40"
+                    className="w-full h-auto rounded-lg sm:w-40"
                   />
                   <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                     <div className="mt-5 sm:mt-0">
