@@ -17,10 +17,7 @@ function Navbar() {
 
   // console.log(user.user.email)
 
-  const logout = () => {
-    localStorage.clear('user');
-    window.location.href = '/login'
-  }
+ 
 
   const cartItems = useSelector((state) => state.cart)
 
@@ -80,9 +77,9 @@ function Navbar() {
                   </div> : ""}
 
                 {user ? <div className="flow-root">
-                    <a onClick={logout} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
+                    <Link to={'/login'} onClick={() =>localStorage.clear('user')} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
                       Logout
-                    </a>
+                    </Link>
                   </div> : <div className="flow-root">
                     <Link to={'/signup'}  className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
                       Signup
@@ -92,7 +89,7 @@ function Navbar() {
                     <Link to={'/'} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer">
                       <img
                         className="inline-block w-10 h-10 rounded-full"
-                        src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
+                        src="../.././public/userimage.jpg"
                         alt="Dan_Abromov" />                                        </Link>
                   </div>
                 </div>
@@ -162,9 +159,9 @@ function Navbar() {
                   </Link> : ""}
                   
                 
-                 {user ?  <a onClick={logout} className="text-sm font-medium text-gray-700 cursor-pointer  " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                 {user ?  <Link to={'/login'} onClick={() =>localStorage.clear('user')} className="text-sm font-medium text-gray-700 cursor-pointer  " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Logout
-                  </a> : ""}
+                  </Link> : ""}
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
@@ -181,8 +178,8 @@ function Navbar() {
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
-                      src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
-                      alt="Dan_Abromov" />
+                      src="../.././public/userimage.jpg"
+                                            alt="user" />
                   </a>
                 </div>
 
