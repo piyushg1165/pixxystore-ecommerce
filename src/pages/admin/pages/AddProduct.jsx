@@ -54,12 +54,11 @@ function AddProduct() {
                        </textarea>
                     </div>
                     <div className=' flex justify-center mb-3'>
-                        <Link to={'/dashboard'}>
-                        <button
+                        <Link to={'/dashboard'}
                         onClick={addProduct}
-                            className=' bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg'>
+                            className=' bg-yellow-500 w-full text-center text-black font-bold  px-2 py-2 rounded-lg'>
                             Add Product
-                        </button></Link>
+                        </Link>
                     </div>
                  
                 </div>
