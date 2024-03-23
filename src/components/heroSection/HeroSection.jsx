@@ -3,7 +3,7 @@ import React from 'react'
 function HeroSection() {
   return (
     <div>
-        <img src="https://static.vecteezy.com/system/resources/previews/004/299/835/original/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-free-vector.jpg" alt="" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/pixxystore-53a2c.appspot.com/o/Homepage.jpg?alt=media&token=47a2477d-1a6e-48df-8f25-314c0584fa0b" alt="" />
     </div>
   )
 }
