@@ -144,10 +144,9 @@ function myState(props) {
             result.forEach((doc) => {
                 ordersArray.push(doc.data());
                 setLoading(false)
-                console.log(result)
+                // console.log(result)
             });
             setOrder(ordersArray);
-            console.log(ordersArray)
             setLoading(false);
         } catch (error) {
             console.log(error)
@@ -167,7 +166,6 @@ function myState(props) {
                 setLoading(false)
             });
             setUser(usersArray);
-            console.log(usersArray)
             setLoading(false);
         } catch (error) {
             console.log(error)
