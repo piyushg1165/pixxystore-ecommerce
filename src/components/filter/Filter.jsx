@@ -6,8 +6,6 @@ function Filter() {
   const context = useContext(myContext)
   const { mode, searchkey, setSearchkey, filterType, setFilterType,
     filterPrice, setFilterPrice, product } = context
-    console.log(product)
-    console.log(product)
     
     
 
