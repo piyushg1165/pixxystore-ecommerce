@@ -4,6 +4,7 @@ import MyContext from './myContext'
 import { Timestamp, addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { fireDB } from '../../firebase/FirebaseConfig';
+import { redirect } from 'react-router-dom';
 
 function myState(props) {
     const [mode, setMode] = useState('light');
@@ -106,7 +107,9 @@ function myState(props) {
 
             await setDoc(doc(fireDB, 'products', products.id), products)
             toast.success("Product Updated successfully")
-            
+            setTimeout(() => {
+                redirect('/dashboard')
+            }, 800);
             getProductData();
             setLoading(false)
 
