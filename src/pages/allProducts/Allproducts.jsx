@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom'
 
 function Allproducts() {
   const context = useContext(myContext)
-  const { mode, product ,searchkey, setSearchkey,filterType,setFilterType,
-      filterPrice,setFilterPrice} = context
+  const { mode, product ,searchkey,filterType,
+      filterPrice} = context
 
   const dispatch = useDispatch()
   const cartItems = useSelector((state)=> state.cart);
